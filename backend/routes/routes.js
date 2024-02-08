@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts, addPost, editPost, deletePost } = require("../../database/consultas.js");
-const { isValidUrl } = require("../../server/validation/validation");
+const { getPosts, addPost, editPost, deletePost } = require("../database/consultas");
+const { isValidUrl } = require("../utils/validation");
 
 
 router.get('/posts', async (req, res) => {
