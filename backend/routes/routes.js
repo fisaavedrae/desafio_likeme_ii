@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { getPosts, addPost, editPost, deletePost } = require("../database/consultas");
 const { isValidUrl } = require("../utils/validation");
-const { updatePostController } = require('../controllers/updatePostController');
-const { updatePostMiddleware } = require('../middlewares/updatePostMiddleware');
+const { updatePostController, deletePostController } = require('../controllers/controllers');
+//const { deletePostController } = require('../controllers/deletePostController');
+//const { updatePostMiddleware } = require('../middlewares/updatePostMiddleware');
+const { updatePostMiddleware, deletePostMiddleware } = require('../middlewares/middlewares');
 
 
 router.get('/posts', async (req, res) => {
@@ -54,7 +56,9 @@ router.put('/posts/:id', async (req, res) => {
 })
 */
 router.put('/posts/:id', updatePostMiddleware, updatePostController);
+router.delete('/posts/:id', deletePostMiddleware, deletePostController);
 
+/*
 router.delete('/posts/:id', async (req, res) => {
 
     const { id } = req.params
@@ -66,7 +70,7 @@ router.delete('/posts/:id', async (req, res) => {
         res.status(400).json({ message: 'Error al eliminar el post' })
     }
 })
-
+*/
 
 
 module.exports = router;

@@ -36,7 +36,7 @@ const deletePost = async (id) => {
     try {
         const { rows } = await pool.query("DELETE FROM posts WHERE id =$1", [id])
         console.log('Post eliminado')
-        return rows
+        return "Success"
     } catch (error) {
         console.log(error)
     }
