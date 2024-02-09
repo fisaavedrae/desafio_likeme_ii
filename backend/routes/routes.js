@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { getPosts, addPost, editPost, deletePost } = require("../database/consultas");
 const { isValidUrl } = require("../utils/validation");
+const { updatePostController } = require('../controllers/updatePostController');
+const { updatePostMiddleware } = require('../middlewares/updatePostMiddleware');
 
 
 router.get('/posts', async (req, res) => {
@@ -38,6 +40,7 @@ router.post('/posts', async (req, res) => {
     }
 })
 
+/*
 router.put('/posts/:id', async (req, res) => {
     const { id } = req.params
 
@@ -49,6 +52,8 @@ router.put('/posts/:id', async (req, res) => {
         res.status(400).json({ message: 'Error al agregar el like' })
     }
 })
+*/
+router.put('/posts/:id', updatePostMiddleware, updatePostController);
 
 router.delete('/posts/:id', async (req, res) => {
 

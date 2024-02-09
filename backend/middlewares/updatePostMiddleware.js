@@ -1,12 +1,13 @@
-const { getPosts, addPost, editPost, deletePost, verificaSiPostExiste } = require("../database/querys.js");
+const { verificaSiExisteId } = require("../database/consultas");
 
 const updatePostMiddleware = async (req, res, next) => {
     const { id } = req.params;
+    console.log("id: ", id)
     try {
         if (id) {
             if (Number(id)) {
                 console.log("es numero")
-                const post = await verificaSiPostExiste(id);
+                const post = await verificaSiExisteId(id);
                 if (post != "") {
                     req.data = {
                         postExist: true,

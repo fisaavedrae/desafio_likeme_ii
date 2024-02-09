@@ -24,7 +24,7 @@ const addPost = async (titulo, imgSrc, descripcion) => {
 
 const editPost = async (id) => {
     try {
-        const { rows } = await pool.query("UPDATE posts SET likes = likes + 1 WHERE id = $1 ", [id])
+        const { rows } = await pool.query("UPDATE posts SET likes = likes + 1 WHERE id = $1 RETURNING *", [id])
         console.log('Like agregado')
         return rows
     } catch (error) {
@@ -42,10 +42,21 @@ const deletePost = async (id) => {
     }
 }
 
+const verificaSiExisteId = async (id) => {
+    try {
+        const { rows } = await pool.query("SELECT * FROM posts WHERE id = $1", [id])
+        console.log('Verificando si existe ID')
+        return rows
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = {
     getPosts,
     addPost,
     editPost,
-    deletePost
+    deletePost,
+    verificaSiExisteId
 }
