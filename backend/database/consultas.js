@@ -14,7 +14,7 @@ const getPosts = async (id, titulo, img, descripcion, likes) => {
 const addPost = async (titulo, imgSrc, descripcion) => {
     try {
         console.log("url: ", imgSrc)
-        const { rows } = await pool.query("INSERT INTO posts ( titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4)", [titulo, imgSrc, descripcion, 0])
+        const { rows } = await pool.query("INSERT INTO posts ( titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4) RETURNING *", [titulo, imgSrc, descripcion, 0])
         console.log('Post agregado')
         return rows
     } catch (error) {
@@ -51,6 +51,15 @@ const verificaSiExisteId = async (id) => {
         console.log(error)
     }
 }
+const verificaSiExistenPosts = async (id) => {
+    try {
+        const { rows } = await pool.query("SELECT * FROM posts ")
+        console.log('Verificando si existen Posts')
+        return rows
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 module.exports = {
@@ -58,5 +67,6 @@ module.exports = {
     addPost,
     editPost,
     deletePost,
-    verificaSiExisteId
+    verificaSiExisteId,
+    verificaSiExistenPosts
 }

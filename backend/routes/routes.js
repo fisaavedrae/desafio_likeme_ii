@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const { getPosts, addPost, editPost, deletePost } = require("../database/consultas");
-const { isValidUrl } = require("../utils/validation");
-const { updatePostController, deletePostController } = require('../controllers/controllers');
-//const { deletePostController } = require('../controllers/deletePostController');
-//const { updatePostMiddleware } = require('../middlewares/updatePostMiddleware');
-const { updatePostMiddleware, deletePostMiddleware } = require('../middlewares/middlewares');
+//const { isValidUrl } = require("../utils/validation");
+const { createPostController, readPostController, updatePostController, deletePostController } = require('../controllers/controllers');
+const { createPostMiddleware, readPostMiddleware, updatePostMiddleware, deletePostMiddleware } = require('../middlewares/middlewares');
 
 
+router.get('/posts', readPostMiddleware, readPostController);
+/*
 router.get('/posts', async (req, res) => {
     try {
         const results = await getPosts()
@@ -18,7 +18,10 @@ router.get('/posts', async (req, res) => {
     }
 
 })
+*/
 
+router.post('/posts', createPostMiddleware, createPostController);
+/*
 router.post('/posts', async (req, res) => {
 
     const { titulo, imgSrc, descripcion } = req.body
@@ -41,6 +44,7 @@ router.post('/posts', async (req, res) => {
         }
     }
 })
+*/
 
 /*
 router.put('/posts/:id', async (req, res) => {
