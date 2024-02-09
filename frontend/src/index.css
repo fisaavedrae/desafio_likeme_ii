@@ -1,15 +1,23 @@
 body {
-  background: #f1f1f1;
+  background: #EEF1EF;
 }
 
 .form {
   padding: 15px;
-  background: #0d47a1;
-  color: white;
+  background: #5E6572;
+  color: #EEF1EF;
+  font-family: 'Gaegu', sans-serif;
+}
+
+.toast-body {
+  font-family: 'Gaegu', sans-serif;
+  font-size: 20px;
 }
 
 .card-body {
-  background: #e1e2e1;
+  background: #A9B4C2;
+  color: #1C2321;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 #creado {
@@ -22,12 +30,13 @@ body {
 }
 
 .fa-solid {
-  color: red;
+  color: #990033;
 }
 
 i {
   cursor: pointer;
 }
+
 .App {
   font-family: sans-serif;
   text-align: center;
