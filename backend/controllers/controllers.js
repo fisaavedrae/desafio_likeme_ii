@@ -10,7 +10,7 @@ const createPostController = async (req, res, next) => {
             if (post_query != "") {
                 res.status(200).json({
                     status: 'Success',
-                    msg: 'Post agregado',
+                    message: 'Post creado con exito',
                     post: post_query,
                 });
             }
@@ -26,11 +26,13 @@ const readPostController = async (req, res, next) => {
     try {
         if (postExist) {
             const post_query = await getPosts();
+
             if (post_query != "") {
+
                 res.status(200).json({
                     status: 'Success',
-                    msg: 'Post leidos',
-                    post: post_query,
+                    message: 'Post leidos',
+                    posts: post_query,
                 });
             }
         }
@@ -49,7 +51,7 @@ const updatePostController = async (req, res, next) => {
             if (post_query != "") {
                 res.status(200).json({
                     status: 'Success',
-                    msg: 'Post updated',
+                    message: 'Like agregado',
                     post: post_query,
                 });
             }
@@ -68,7 +70,7 @@ const deletePostController = async (req, res, next) => {
             if (post_query == "Success") {
                 res.status(200).json({
                     status: 'Success',
-                    msg: 'Post deleted',
+                    message: 'Post eliminado',
                 });
             }
         }

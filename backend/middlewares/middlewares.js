@@ -11,14 +11,14 @@ const createPostMiddleware = async (req, res, next) => {
         if (!titulo || !imgSrc || !descripcion) {
             return res.status(400).json({
                 status: 'Bad Request',
-                msg: 'Debe ingresar toda la información',
+                message: 'Debe ingresar toda la información',
             });
 
         } else {
             if (!isValidUrl(imgSrc)) {
                 res.status(400).json({
                     status: 'Bad Request',
-                    msg: 'Debe ingresar una URL valida'
+                    message: 'Debe ingresar una URL valida'
                 })
                 return
             } else {
@@ -52,7 +52,7 @@ const readPostMiddleware = async (req, res, next) => {
         else {
             return res.status(400).json({
                 status: 'Bad Request',
-                msg: 'No existen posts en la base de datos',
+                message: 'No existen posts en la base de datos',
             });
         }
 
@@ -79,7 +79,7 @@ const updatePostMiddleware = async (req, res, next) => {
                 else {
                     return res.status(400).json({
                         status: 'Bad Request',
-                        msg: 'El ID no existe',
+                        message: 'El ID no existe',
                     });
                 }
             }
@@ -87,13 +87,13 @@ const updatePostMiddleware = async (req, res, next) => {
                 console.log("no es numero")
                 return res.status(400).json({
                     status: 'Bad Request',
-                    msg: 'El ID debe ser numerico',
+                    message: 'El ID debe ser numerico',
                 });
             }
         } else {
             return res.status(400).json({
                 status: 'Bad Request',
-                msg: 'El ID es requerido',
+                message: 'El ID es requerido',
             });
         }
     } catch (error) {
@@ -118,7 +118,7 @@ const deletePostMiddleware = async (req, res, next) => {
                 else {
                     return res.status(400).json({
                         status: 'Bad Request',
-                        msg: 'El ID no existe',
+                        message: 'El ID no existe',
                     });
                 }
             }
@@ -126,13 +126,13 @@ const deletePostMiddleware = async (req, res, next) => {
                 console.log("no es numero")
                 return res.status(400).json({
                     status: 'Bad Request',
-                    msg: 'El ID debe ser numerico',
+                    message: 'El ID debe ser numerico',
                 });
             }
         } else {
             return res.status(400).json({
                 status: 'Bad Request',
-                msg: 'El ID es requerido',
+                message: 'El ID es requerido',
             });
         }
     } catch (error) {

@@ -2,7 +2,7 @@ const pool = require("./config");
 
 const getPosts = async (id, titulo, img, descripcion, likes) => {
     try {
-        const { rows } = await pool.query("SELECT id, titulo, img, descripcion, likes FROM posts")
+        const { rows } = await pool.query("SELECT id, titulo, img, descripcion, likes FROM posts order by id asc")
         console.log(rows)
         return rows
     } catch (error) {
